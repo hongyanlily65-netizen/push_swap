@@ -17,4 +17,25 @@
 # include <stdio.h>
 # include <stdint.h>
 
+typedef struct s_list
+{
+	int	value;
+	int	index;
+	struct s_list	*next;
+}	t_list;
+
+void	ft_cleaner(char **res);
+t_list	*parse_args_split(char **res);
+t_list	*parse_args(int argc, char **argv);
+long	atol(char *s);
+void	error_free(t_list **stack);
+int	ft_is_number(char *str);
+int	ft_is_duplicated(t_list *stack, int nbr);
+t_list	*parse_array(char **res, int start);
+//stack
+int	ft_lstsize(t_list *lst);
+void	ft_lstclear(t_list **lst);
+void	ft_lstadd_back(t_list **lst);
+t_list	*ft_lstnew(int *nbr);
+int	append(t_list **lst, void *content);
 # endif
