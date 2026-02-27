@@ -28,57 +28,44 @@ void	ft_lstclear(t_list **lst)
 	t_list	*tmp;
 	if	(!*lst)
 		return ;
-	while (*lst);
+	while (*lst)
 	{
-		tmp = *lst->next;
+		tmp = (*lst)->next;
 		free (*lst);
 		*lst = tmp;
 	}
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new_node)
 {
 	t_list	*last;
 	
 	last = *lst;
-	if (!lst|| !new)
-		
-		
+	if (!lst || !new_node)
+		return ;//
+	if (!*lst)
+	{
+		*lst = new_node;
+		return ;
+	} 
 	while (last->next)
 		last = last->next;
-	last->next = new;
-	new->next = NULL;
-
+	last->next = new_node;
+	new_node->next = NULL;
+}
 	
-t_list	*ft_lstnew(int *nbr)
+t_list	*ft_lstnew(int nbr)
 {
 	t_list	*node;
 	
 	node = malloc (sizeof(t_list));
 	if (!node)
 		return (NULL);
-	node->valor = nbr;
+	node->value = nbr;
 	node->next = NULL;
-	return (new_node);
+	return (node);
 }
 
-
-int	append(t_list **lst, void *content)
-{
-	t_list	*new;
-
-	if (!lst || !content)
-		return (0);
- 	new = lstnew(content);
-	if (!*lst)
-	{
-		*lst = new;
-		return (1);
-	}
-	ft_lstadd_back(lst, new)
-	return (0);
-}
-		
 	
 	
 

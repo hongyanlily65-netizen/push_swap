@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_cleaner(char **res)
+void	free_split(char **res)
 {
 	int	i;
 	
@@ -32,32 +32,30 @@ t_list *parse_args(int argc, char **argv)
 	(void)argc;
 	return (parse_array(argv, 1));
 }
-long	atol(char *s)
+long int	atol(const char *nptr)
 {
 	int	i;
 	char	sign;
-	long	res;	
+	long int	res;	
 	
 	i = 0;
 	sign = 1;
 	res = 0;
-	if (!res)
-		return (0);
-	while (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13))
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
-	if (s[i] == '-' || s[i] == '+')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (s[i] == '-')
+		if (nptr[i] == '-')
 			sign = -sign;
 		i++;
 	}
-	while (s[i] >= '0' && s[i] <= '9')
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		res = res*10 + (s[i] - 48);
+		res = res*10 + (nptr[i] - 48);
 		i++;
 	}
 	return (res * sign);
-			
+}			
 		
 void	error_free(t_list **stack)
 {
@@ -81,8 +79,8 @@ int	ft_is_number(char *str)
 }
 int	ft_is_duplicated(t_list *stack,int nbr)
 {
-	if (!stack || !nbr)
-		return (1);//1 means the argument is true, when it is true it frees the stack
+	if (!stack)
+		return (0);
 	while (stack)
 	{
 		if (stack->value == nbr)
@@ -97,8 +95,9 @@ t_list	*parse_array(char **res, int start)
 	t_list	*stack;
 	long	nbr;
 	int	i;
-
-	i = start;
+	
+	stack = NULL;
+	i = start;//i= 1
 	while (res[i])
 	{
 		if (!(ft_is_number(res[i])))
@@ -106,12 +105,11 @@ t_list	*parse_array(char **res, int start)
 		nbr = atol(res[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			return (error_free(&stack), NULL);
-		if (ft_is_duplicated(stack, nbr))
+		if (ft_is_duplicated(stack, (int)nbr))
 			return (error_free(&stack), NULL);	
-		if (!append(&stack, nbr))
-			return (error_free(&stack), NULL);
+		ft_lstadd_back(&stack, ft_lstnew((int)nbr));
 		i++;
 	}
 	return (stack);
-
+}
 

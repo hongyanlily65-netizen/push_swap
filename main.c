@@ -30,11 +30,16 @@ int	main(int argc, char **argv)
 		a = parse_args_split(res);
 	}
 	else
-		a = parse_args(argc, argv)
+		a = parse_args(argc, argv);
 	if(!a)
 	{
-		ft_cleaner(res);
+		free_split(res);
 		return (1);
+	}
+	while(a)
+	{
+		printf("%d\n", a->value);
+		a = a->next;
 	}
 	return (0);
 }
