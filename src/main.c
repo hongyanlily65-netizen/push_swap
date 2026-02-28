@@ -6,7 +6,7 @@
 /*   By: hohu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 18:32:30 by hohu              #+#    #+#             */
-/*   Updated: 2026/02/24 18:39:20 by hohu             ###   ########.fr       */
+/*   Updated: 2026/02/28 14:17:46 by hohu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -28,14 +28,12 @@ int	main(int argc, char **argv)
 		if (!res)
 			return(1);
 		a = parse_args_split(res);
+		free_split(res);	
 	}
 	else
 		a = parse_args(argc, argv);
-	if(!a)
-	{
-		free_split(res);
+	if (!a)
 		return (1);
-	}
 	while(a)
 	{
 		printf("%d\n", a->value);

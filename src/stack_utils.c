@@ -6,7 +6,7 @@
 /*   By: hohu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 20:32:04 by hohu              #+#    #+#             */
-/*   Updated: 2026/02/25 20:01:58 by hohu             ###   ########.fr       */
+/*   Updated: 2026/02/28 14:18:00 by hohu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -42,7 +42,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new_node)
 	
 	last = *lst;
 	if (!lst || !new_node)
-		return ;//
+		return ;
 	if (!*lst)
 	{
 		*lst = new_node;

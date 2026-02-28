@@ -6,7 +6,7 @@
 /*   By: hohu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 19:09:53 by hohu              #+#    #+#             */
-/*   Updated: 2026/02/24 21:50:51 by hohu             ###   ########.fr       */
+/*   Updated: 2026/02/28 14:17:51 by hohu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -95,9 +95,10 @@ t_list	*parse_array(char **res, int start)
 	t_list	*stack;
 	long	nbr;
 	int	i;
+	t_list	*new_node;
 	
 	stack = NULL;
-	i = start;//i= 1
+	i = start;
 	while (res[i])
 	{
 		if (!(ft_is_number(res[i])))
@@ -106,8 +107,11 @@ t_list	*parse_array(char **res, int start)
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			return (error_free(&stack), NULL);
 		if (ft_is_duplicated(stack, (int)nbr))
-			return (error_free(&stack), NULL);	
-		ft_lstadd_back(&stack, ft_lstnew((int)nbr));
+			return (error_free(&stack), NULL);
+		new_node = ft_lstnew((int)nbr);
+		if (!new_node)
+			 return (error_free(&stack), NULL);  
+		ft_lstadd_back(&stack, new_node);
 		i++;
 	}
 	return (stack);
