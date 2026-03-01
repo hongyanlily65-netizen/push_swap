@@ -6,10 +6,21 @@
 /*   By: hohu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 19:09:53 by hohu              #+#    #+#             */
-/*   Updated: 2026/02/28 14:17:51 by hohu             ###   ########.fr       */
+/*   Updated: 2026/02/28 15:33:16 by hohu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+char *get_str(char **argv)
+{	
+	int	i;
+	
+	i = 1;
+	while (argv[i][0])
+		i++;
+	return (argv[i]);
+}
+		
 
 void	free_split(char **res)
 {
@@ -23,14 +34,6 @@ void	free_split(char **res)
 	}
 	free(res);
 }
-t_list *parse_args_split(char **res) 
-{
-	return (parse_array(res, 0));
-}
-t_list *parse_args(int argc, char **argv)
-{
-	(void)argc;
-	return (parse_array(argv, 1));
 }
 long int	atol(const char *nptr)
 {
@@ -57,16 +60,8 @@ long int	atol(const char *nptr)
 	return (res * sign);
 }			
 		
-void	error_free(t_list **stack)
+int	is_number(char *str)
 {
-	ft_lstclear(stack);
-	write(2,"error\n", 6);
-}
-	
-int	ft_is_number(char *str)
-{
-	if (!str)
-		return (0);
 	if (*str == '+' || *str == '-')
 		str++;
 	while (*str)
@@ -77,43 +72,56 @@ int	ft_is_number(char *str)
 	}
 	return (1);
 }
-int	ft_is_duplicated(t_list *stack,int nbr)
+
+static int  ft_is_duplicated_before(long nbr, char **arg, int end)
 {
-	if (!stack)
-		return (0);
-	while (stack)
-	{
-		if (stack->value == nbr)
-			return (1);
-		stack = stack->next;
-	}
-	return (0);
+    int j;
+
+    j = 0;
+    while (j < end)
+    {
+        if (arg[j][0] != '\0' && ft_atol(arg[j]) == nbr)
+            return (1);
+        j++;
+    }
+    return (0);
 }
 	
-t_list	*parse_array(char **res, int start)
+int	check_args(int argc,  char **argv)
 {
-	t_list	*stack;
 	long	nbr;
 	int	i;
-	t_list	*new_node;
+	char	**arg;
 	
-	stack = NULL;
-	i = start;
-	while (res[i])
+	if (argc == 2)
+		arg = ft_split(get_input_str(argv), " ");
+	else
+		arg = argv + 1;
+	if (!arg)
+		return (0); 
+	i = 0;
+	while (arg[i])
 	{
-		if (!(ft_is_number(res[i])))
-			return (error_free(&stack), NULL);
-		nbr = atol(res[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			return (error_free(&stack), NULL);
-		if (ft_is_duplicated(stack, (int)nbr))
-			return (error_free(&stack), NULL);
-		new_node = ft_lstnew((int)nbr);
-		if (!new_node)
-			 return (error_free(&stack), NULL);  
-		ft_lstadd_back(&stack, new_node);
+		if (arg[i][0] != '\0') 
+		{
+			if (!is_num(arg[i]))
+			{
+				if (argc == 2)
+					free_split(arg);
+				return (0);
+			}
+			nbr = ft_atol(arg[i]);
+			if (nbr > INT_MAX || nbr < INT_MIN || ft_is_duplicated_before(nbr, arg, i))
+			{
+				if (argc == 2)
+					free_split(arg);
+				return (0);
+			}
+		}
 		i++;
 	}
-	return (stack);
+	if (argc == 2)
+		free_split(arg);
+	return (1);
 }
 

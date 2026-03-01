@@ -20,26 +20,38 @@
 # include <limits.h>
 # include <libft.h>
 
-typedef struct s_list
+typedef struct s_stack
 {
 	int	value;
 	int	index;
-	struct s_list	*next;
-}	t_list;
+	struct s_stack	*next;
+}	t_stack;
+typedef enum e_strategy
+{
+	MODE_ADAPTIVE;
+	MODR_SIMPLE;
+	MODE_MEDIUM;
+	MODE_COMPLEX;
+}	t_strategy;
+	
+typedef struct s_config
+{
+	t_strategy strat;
+}	t_config;
 //parse
 void	free_split(char **res);
-t_list	*parse_args_split(char **res);
-t_list	*parse_args(int argc, char **argv);
+t_stack	*parse_args_split(char **res);
+t_stack	*parse_args(int argc, char **argv);
 long int	atol(const char *nptr);
-void	error_free(t_list **stack);
+void	error_free(t_stack **stack);
 int	ft_is_number(char *str);
-int	ft_is_duplicated(t_list *stack, int nbr);
-t_list	*parse_array(char **res, int start);
+int	ft_is_duplicated(t_stack *stack, int nbr);
+t_stack	*parse_array(char **res, int start);
 //stack utils
-int	ft_lstsize(t_list *lst);
-void	ft_lstclear(t_list **lst);
-void	ft_lstadd_back(t_list **lst, t_list *new_node);
-t_list	*ft_lstnew(int nbr);
+int	ft_stacksize(t_stack *lst);
+void	ft_stackclear(t_stack **lst);
+void	ft_stackadd_back(t_stack **lst, t_stack *new_node);
+t_stack	*ft_stacknew(int nbr);
 char	**ft_split(char const *s, char c);
 
 # endif

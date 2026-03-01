@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int ft_lstsize(t_list *lst)
+int ft_stacksize(t_stack *lst)
 {
 	int	i;
 	
@@ -23,9 +23,9 @@ int ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
-void	ft_lstclear(t_list **lst)
+void	ft_stackclear(t_stack **lst)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 	if	(!*lst)
 		return ;
 	while (*lst)
@@ -36,9 +36,9 @@ void	ft_lstclear(t_list **lst)
 	}
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new_node)
+void	ft_stackadd_back(t_stack **lst, t_stack *new_node)
 {
-	t_list	*last;
+	t_stack	*last;
 	
 	last = *lst;
 	if (!lst || !new_node)
@@ -54,11 +54,11 @@ void	ft_lstadd_back(t_list **lst, t_list *new_node)
 	new_node->next = NULL;
 }
 	
-t_list	*ft_lstnew(int nbr)
+t_stack	*ft_stacknew(int nbr)
 {
-	t_list	*node;
+	t_stack	*node;
 	
-	node = malloc (sizeof(t_list));
+	node = malloc (sizeof(t_stack));
 	if (!node)
 		return (NULL);
 	node->value = nbr;
@@ -66,7 +66,37 @@ t_list	*ft_lstnew(int nbr)
 	return (node);
 }
 
+
+t_stack	*stack_init(int argc, char **argv)
+{
+	t_stack	*stack;
+	char	**arg;
+	int	*i;
+	t_stack	*new_node;
 	
+	stack = NULL;
+	if (argc == 2)
+		arg = ft_split(get_str(argv)," ");
+	else
+		arg = argv + 1;
+	i = 1;
+	while (arg[i])
+	{
+		if (arg[i][0] != '\0')
+		{
+			new_node = ft_stacknew(ft_atoi(arg[i]);
+			if (!new_node)
+				return (NULL);
+			ft_stackadd_back(&stack,new_node);
+		}
+		i++;
+	}
+	assgin_index(stack);
+	if (argc == 2)
+		free_split(arg);
+	return (stack);
+}
+		
 	
 
 
