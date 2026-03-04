@@ -26,7 +26,9 @@ SRC_DIR   := src
 SRC       := \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/parse.c \
-	$(SRC_DIR)/stack_utils.c
+	$(SRC_DIR)/stack_utils.c \
+	$(SRC_DIR)/index.c \
+	$(SRC_DIR)/init_config.c
 
 OBJS      := $(SRC:.c=.o)
 

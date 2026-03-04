@@ -6,7 +6,7 @@
 /*   By: hohu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 14:07:52 by hohu              #+#    #+#             */
-/*   Updated: 2026/02/22 14:13:39 by hohu             ###   ########.fr       */
+/*   Updated: 2026/03/04 20:39:40 by hohu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -28,30 +28,34 @@ typedef struct s_stack
 }	t_stack;
 typedef enum e_strategy
 {
-	MODE_ADAPTIVE;
-	MODR_SIMPLE;
-	MODE_MEDIUM;
-	MODE_COMPLEX;
+	MODE_ADAPTIVE,
+	MODE_SIMPLE,
+	MODE_MEDIUM,
+	MODE_COMPLEX,
 }	t_strategy;
 	
 typedef struct s_config
 {
-	t_strategy strat;
+	t_strategy mode;
 }	t_config;
+t_config	*init_config(void);
+//main
+int	input_check(int *argc, char **argv,t_config *config);
+int	handle_flags(const char *arg, t_config *config);
+int	parse_flags(int *argc, char **argv, t_config *config);
 //parse
 void	free_split(char **res);
-t_stack	*parse_args_split(char **res);
-t_stack	*parse_args(int argc, char **argv);
-long int	atol(const char *nptr);
-void	error_free(t_stack **stack);
-int	ft_is_number(char *str);
-int	ft_is_duplicated(t_stack *stack, int nbr);
-t_stack	*parse_array(char **res, int start);
+int	check_args(int argc,  char **argv);
+long int	ft_atol(const char *nptr);
+char *get_str(char **argv);
+int	is_number(char *str);
 //stack utils
 int	ft_stacksize(t_stack *lst);
 void	ft_stackclear(t_stack **lst);
 void	ft_stackadd_back(t_stack **lst, t_stack *new_node);
 t_stack	*ft_stacknew(int nbr);
-char	**ft_split(char const *s, char c);
-
+t_stack *stack_init(int argc, char **argv);
+//index
+t_stack *find_min_ptr(t_stack *stack);
+void	assign_index(t_stack *stack);
 # endif

@@ -9,7 +9,6 @@
 /*   Updated: 2026/03/01 17:32:15 by hohu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
 t_stack *find_min_ptr(t_stack *stack)
@@ -36,14 +35,14 @@ void	assign_index(t_stack *stack)
 	int i;
 	t_stack *node;
 	
-	size = lstsize(stack);
+	size = ft_stacksize(stack);
 	i = 0;
 	while (i < size)
 	{
 		node = find_min_ptr(stack);
 		if (!node)
 			break ; 
-		head->index = i;
+		node->index = i;
 		i++;
 	}
 }

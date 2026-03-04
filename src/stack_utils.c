@@ -66,41 +66,36 @@ t_stack	*ft_stacknew(int nbr)
 	return (node);
 }
 
-
 t_stack	*stack_init(int argc, char **argv)
 {
 	t_stack	*stack;
 	char	**arg;
-	int	*i;
+	int	i;
 	t_stack	*new_node;
 	
 	stack = NULL;
 	if (argc == 2)
-		arg = ft_split(get_str(argv)," ");
+		arg = ft_split(get_str(argv),' ');
 	else
 		arg = argv + 1;
-	i = 1;
+	i = 0;
 	while (arg[i])
 	{
 		if (arg[i][0] != '\0')
 		{
-			new_node = ft_stacknew(ft_atoi(arg[i]);
+			new_node = ft_stacknew(ft_atoi(arg[i]));
 			if (!new_node)
+			{
+				if(argc == 2)
+					free_split(arg);
 				return (NULL);
+			}
 			ft_stackadd_back(&stack,new_node);
 		}
 		i++;
 	}
-	assgin_index(stack);
+	assign_index(stack);
 	if (argc == 2)
 		free_split(arg);
 	return (stack);
-}
-		
-	
-
-
-
-		
-
-	
+}	

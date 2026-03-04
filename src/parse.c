@@ -16,7 +16,7 @@ char *get_str(char **argv)
 	int	i;
 	
 	i = 1;
-	while (argv[i][0])
+	while (argv[i] && argv[i][0] == '\0')
 		i++;
 	return (argv[i]);
 }
@@ -34,8 +34,7 @@ void	free_split(char **res)
 	}
 	free(res);
 }
-}
-long int	atol(const char *nptr)
+long int	ft_atol(const char *nptr)
 {
 	int	i;
 	char	sign;
@@ -94,7 +93,7 @@ int	check_args(int argc,  char **argv)
 	char	**arg;
 	
 	if (argc == 2)
-		arg = ft_split(get_input_str(argv), " ");
+		arg = ft_split(get_str(argv), ' ');
 	else
 		arg = argv + 1;
 	if (!arg)
@@ -104,7 +103,7 @@ int	check_args(int argc,  char **argv)
 	{
 		if (arg[i][0] != '\0') 
 		{
-			if (!is_num(arg[i]))
+			if (!is_number(arg[i]))
 			{
 				if (argc == 2)
 					free_split(arg);
