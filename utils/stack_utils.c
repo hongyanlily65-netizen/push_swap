@@ -11,6 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+t_stack	*ft_stacklast(t_stack *lst)
+{
+	t_list	*last;
+
+	if (lst == NULL)
+		return (NULL);
+	last = lst;
+	while (last->next != NULL)
+	{
+		last = last->next;
+	}
+	return (last);
+}
 int ft_stacksize(t_stack *lst)
 {
 	int	i;

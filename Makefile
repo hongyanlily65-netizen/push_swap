@@ -1,34 +1,31 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hohu <marvin@42.fr>                        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/28 13:24:55 by hohu              #+#    #+#              #
-#    Updated: 2026/02/28 14:47:39 by hohu             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME      := push_swap
 CC        := cc
-CFLAGS    := -Wall -Wextra -Werror -g -O0
+CFLAGS    := -Wall -Wextra -Werror
 RM        := rm -f
 
-LIBFT_DIR := libft
+LIBFT_DIR := ./libft
 LIBFT     := $(LIBFT_DIR)/libft.a
 
-INC_DIR   := inc
+INC_DIR   := include/
 HEADER    := $(INC_DIR)/push_swap.h
 INCLUDES  := -I$(INC_DIR) -I$(LIBFT_DIR)
 
-SRC_DIR   := src
+SRC_DIR   := src/
 SRC       := \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/parse.c \
 	$(SRC_DIR)/stack_utils.c \
 	$(SRC_DIR)/index.c \
-	$(SRC_DIR)/init_config.c
+	$(SRC_DIR)/init_config.c \
+	$(SRC_DIR)/utils_sort.c \
+	$(SRC_DIR)/radix_sort.c \
+	$(SRC_DIR)/utils_list.c \
+	$(SRC_DIR)/bubble_sort.c \
+	$(SRC_DIR)/chunk_sort.c \
+	$(SRC_DIR)/instrucciones_push.c \
+	$(SRC_DIR)/instrucciones_rotate.c \
+	$(SRC_DIR)/instrucciones_reverse.c \
+	$(SRC_DIR)/instrucciones_swap.c
 
 OBJS      := $(SRC:.c=.o)
 
@@ -41,7 +38,7 @@ libft:
 	$(MAKE) -C $(LIBFT_DIR)
 
 # 2) link executable with libft
-$(NAME): libft $(OBJS)
+$(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 # 3) compile .c -> .o

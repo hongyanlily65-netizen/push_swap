@@ -9,7 +9,9 @@
 /*   Updated: 2026/02/28 14:17:46 by hohu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
+
 int	input_check(int *argc, char **argv,t_config *config)
 {
 	if(!parse_flags(argc, argv, config))
@@ -59,7 +61,7 @@ int	parse_flags(int *argc, char **argv, t_config *config)
 	}
 	return (1);
 }
-/*
+
 static void	sort(t_stack **a, t_stack **b, t_config *config)
 {
 	int	disorder;
@@ -68,8 +70,9 @@ static void	sort(t_stack **a, t_stack **b, t_config *config)
 	if (config ->mode ==MODE_ADAPTIVE)
 	{
 		if(disorder < 2000)
-			selection_sort(a, b);
-		else if(disorder >= 2000 && disorder <= 5000) || ft_stacksize(*a) < 150)
+			 bubble_sort(a);
+		else if(
+			(disorder >= 2000 && disorder <= 5000) || ft_stacksize(*a) < 150)
 			chunk_sort(a, b);
 		else
 			radix_sort(a,b);
@@ -78,9 +81,10 @@ static void	sort(t_stack **a, t_stack **b, t_config *config)
 		selection_sort(a,b);
 	else if (config->mode ==MODE_MEDIUM)
 		chunk_sort(a,b);
-	else
-		turk_sort(a,b)
-}*/
+	else if (config->mode ==MODE_COMPLEX)
+		radix_sort(a, b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -92,14 +96,9 @@ int	main(int argc, char **argv)
 		return (1);
 	a = stack_init(argc, argv);
 	b = NULL;
-	//sort (&a, &b, config);
-	//if (!a)
-	//	return (1);
-	printf("%d\n",(int)config->mode);
-	while(a)
-	{
-		printf("%d\n", a->value);
-		a = a->next;
-	}
+	sort (&a, &b, config);
+	if (!a)
+		return (1);
+	free_all(a, b, config);
 	return (0);
 }			
