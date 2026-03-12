@@ -12,18 +12,15 @@
 
 #include "push_swap.h"
 
-int	is_stack_sorted(t_stack **stack)
+int	is_stack_sorted(t_stack *stack)
 {
-	t_stack	*tmp;
-
-	if (!stack || !(*stack))
-		return (-1);
-	tmp = *stack;
-	while (tmp->next)
+	if (!stack)
+		return (1);
+	while (stack->next)
 	{
-		if (tmp->value > tmp->next->value)
+		if (stack->value > stack->next->value)
 			return (0);
-		tmp = tmp->next;
+		stack = stack->next;
 	}
 	return (1);
 }

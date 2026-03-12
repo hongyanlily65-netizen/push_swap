@@ -13,7 +13,7 @@
 
 t_stack	*ft_stacklast(t_stack *lst)
 {
-	t_list	*last;
+	t_stack	*last;
 
 	if (lst == NULL)
 		return (NULL);

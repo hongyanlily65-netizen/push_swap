@@ -15,13 +15,14 @@
 void	ft_reverse(t_stack **stack)
 {
 	t_stack	*tmp;
-
+	
+	tmp = NULL;
 	if (!(*stack) || !(*stack)->next)
 		return ;
 	*stack = tmp;
 	while ((*stack)->next->next != NULL)
 	{
-		*stack = ((t_stack *)ft_lstlast(*stack))->next;
+		*stack = ((t_stack *)ft_stacklast(*stack))->next;
 	}
 	tmp = (*stack)->next->next;
 	(*stack)->next->next = tmp;

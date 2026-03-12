@@ -78,7 +78,7 @@ static void	sort(t_stack **a, t_stack **b, t_config *config)
 			radix_sort(a,b);
 	}
 	else if (config->mode == MODE_SIMPLE)
-		selection_sort(a,b);
+		bubble_sort(a);
 	else if (config->mode ==MODE_MEDIUM)
 		chunk_sort(a,b);
 	else if (config->mode ==MODE_COMPLEX)

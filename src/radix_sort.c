@@ -27,7 +27,7 @@ int	get_max_bits(t_stack *stack)
 		if (tmp->index > nbr_max)
 			// Mira si el index del nodo actual es mayor que el máximo encontrado hasta ahora
 			nbr_max = tmp->index; // Si el índice actual es mayor,
-				entonces ese pasa a ser el nuevo máximo.
+				// entonces ese pasa a ser el nuevo máximo.
 		tmp = tmp->next;          // Avanza al siguiente elemento de la lista.
 	}
 	bits_max = 0;

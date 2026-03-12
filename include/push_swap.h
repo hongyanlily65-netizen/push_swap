@@ -53,7 +53,7 @@ char				*get_str(char **argv);
 int					is_number(char *str);
 
 // stack utils
-t_stack				*ft_stacklast(t_stack *lst)
+t_stack				*ft_stacklast(t_stack *lst);
 int					ft_stacksize(t_stack *lst);
 void				ft_stackclear(t_stack **lst);
 void				ft_stackadd_back(t_stack **lst, t_stack *new_node);
@@ -79,9 +79,17 @@ void				ft_reverse(t_stack **stack);
 void				rra(t_stack **stack_a);
 void				rrb(t_stack **stack_b);
 void				rrr(t_stack **stack_a, t_stack **stack_b);
-
+void	rotate_rb(t_stack **stackB);
+void	rotate_ra(t_stack **stackA);
+void	push_pa(t_stack **stackA, t_stack **stackB);
+void	push_pb(t_stack **stackA, t_stack **stackB);
+void	swap_sa(t_stack **stackA);
+void	swap_sb(t_stack **stackB);
+void	reverse_rra(t_stack **stackA);
+void	reverse_rrb(t_stack **stackB);
 // sort
 void				bubble_sort(t_stack **stack);
+int	is_stack_sorted(t_stack *stack);
 void				radix_sort(t_stack **stack_A, t_stack **stack_B);
 void				chunk_sort(t_stack **stack_A, t_stack **stack_B);
 
@@ -89,9 +97,12 @@ void				chunk_sort(t_stack **stack_A, t_stack **stack_B);
 int					find_min_pos(t_stack *stack);
 int					find_max_index(t_stack *stack);
 int					find_position(t_stack *stack, int value);
-int					is_stack_sorted(t_stack **stack);
 int					get_max_bits(t_stack *stack);
 int					get_blocks(int size);
 void				push_back_to_a(t_stack **stack_a, t_stack **stack_b);
-
+// free all
+void	recursive_free(t_stack *head);
+void	free_all(t_stack *a, t_stack *b, t_config *config);
+// disorder indice
+int	compute_disorder(t_stack *stack);
 #endif

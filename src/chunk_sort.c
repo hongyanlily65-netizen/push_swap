@@ -31,9 +31,9 @@ void	push_back_to_a(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	while (*stack_b)
 	{
-		max_index = find_max_index(stack_b);
-		position = find_position(stack_b, max_index);
-		size = ft_stacksize(stack_b);
+		max_index = find_max_index(*stack_b);
+		position = find_position(*stack_b, max_index);
+		size = ft_stacksize(*stack_b);
 		if (position <= (size / 2))
 		{
 			while ((*stack_b)->index != max_index)
@@ -58,7 +58,7 @@ void	chunk_sort(t_stack **stack_A, t_stack **stack_B)
 	int	blocks;
 
 	i = 0;
-	blocks = get_blocks(ft_stacksize(stack_A));
+	blocks = get_blocks(ft_stacksize(*stack_A));
 	while (stack_A)
 	{
 		if ((*stack_A)->index <= i)
@@ -75,4 +75,5 @@ void	chunk_sort(t_stack **stack_A, t_stack **stack_B)
 			rotate_ra(stack_A);
 	}
 	push_back_to_a(stack_A, stack_B);
+}
 

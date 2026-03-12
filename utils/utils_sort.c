@@ -59,7 +59,7 @@ int	find_position(t_stack *stack, int value)
 	int		position;
 	t_stack	*tmp;
 	position = 0;
-	tmp = stack
+	tmp = stack;
 	while (tmp)
 	{
 		if (tmp->index == value)
